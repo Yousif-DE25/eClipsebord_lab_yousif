@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
+    image: eclipsebordregistery-h7gfh8ccebd2evat.azurecr.io/backend:v1
+    platform: linux/amd64
     ports:
       - "8000:8000"
 
@@ -10,6 +12,8 @@ services:
     build:
       context: .
       dockerfile: frontend/Dockerfile
+    image: eclipsebordregistery-h7gfh8ccebd2evat.azurecr.io/frontend:v1
+    platform: linux/amd64
     ports:
       - "8501:8501"
     environment:
