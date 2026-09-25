@@ -1,23 +1,25 @@
-
 import httpx
 import pandas as pd
 import streamlit as st
 import os
 
+# LLM-genererad kod
 BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
 
+# LLM-genererad kod
 st.set_page_config(page_title="eClipseBord", page_icon="🌘", layout="wide")
 st.title("eClipseBord")
 
 tab_next, tab_history = st.tabs(["Nästa förmörkelse", "Utforska historik"])
 
-# - Sida 1: Nästa förmörkelse -
+# Sida 1: Nästa förmörkelse
 with tab_next:
     st.subheader("Nästa solförmörkelse")
     try:
         response = httpx.get(f"{BACKEND_URL}/eclipses/next", timeout=5)
         response.raise_for_status()
         data = response.json()
+    # LLM-genererad kod    
     except httpx.HTTPError as e:
         st.error(f"Kunde inte nå backend: {e}")
         data = None
@@ -49,10 +51,11 @@ with tab_next:
             st.write(f"Näst kommande månförmörkelse: **{nxt['date']}** ({nxt['type']})")
 
         st.bar_chart(pd.Series(lunar_data["type_counts"], name="Antal"))
+    # LLM-genererad kod
     except httpx.HTTPError as e:
         st.error(f"Kunde inte hämta månförmörkelsedata: {e}")
 
-# - Sida 2: Utforska historik -
+# Sida 2: Utforska historik
 with tab_history:
     st.subheader("Filtrera historiska solförmörkelser")
 

@@ -1,6 +1,6 @@
-# LLM-genererad kod
 from pathlib import Path
 
+# LLM-genererad kod
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = PROJECT_ROOT / "data"
 
